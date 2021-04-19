@@ -1,17 +1,18 @@
 def method_3(db_cursor, db_connection):
 
     print("Here you can delete a note")
+    print()
 
     db_cursor.execute("SHOW TABLES;")
 
     tables = []
 
-    for table in db_cursor:
+    for el in db_cursor:
+        table = el[0].decode("UTF-8")
         print(table)
-        table = list(table)
-        table = "".join(table)
         tables.append(table)
 
+    print()
     table = input("Choose table:")
 
     if table in tables:

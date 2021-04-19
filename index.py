@@ -9,7 +9,8 @@ db_connection = mysql.connector.connect(
 host="localhost",
 user="root",
 password="admin",
-database="Timetable"
+database="Timetable",
+auth_plugin="mysql_native_password"
 )
 
 db_cursor = db_connection.cursor()
@@ -27,7 +28,6 @@ while run:
     print("5-show a statistics")
     print("6-exit the programm")
     print()
-    print("If you want to exit to main menu print 'Exit' anywere")
 
     print()
 
