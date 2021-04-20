@@ -32,12 +32,12 @@ def method_5(db_cursor, db_connection):
         while subgroup not in ('1', '2', '3'):
             subgroup = input("Wrong subgroup. Enter your subgroup again (1, 2 or 3):")
         
-        day = input("Enter a day (monday, tuesday, wednesday, thursday, friday):")
+        day = input("Enter a day (1 - monday, 2 - tuesday, 3 - wednesday, 4 - thursday, 5 - friday):")
 
-        while day not in ('monday', 'tuesday', 'wednesday', 'thursday', 'friday'):
-            day = input("Wrong day. Enter your subgroup again (monday, tuesday, wednesday, thursday, friday):")
+        while day not in ('1', '2', '3', '4', '5'):
+            day = input("Wrong day. Enter your subgroup again (1 - monday, 2 - tuesday, 3 - wednesday, 4 - thursday, 5 - friday):")
 
-        db_cursor.execute("SELECT COUNT(*) FROM timetable_full WHERE subgroup='" + subgroup + "' AND day='" + day + "';")
+        db_cursor.execute("SELECT COUNT(*) FROM timetable WHERE subgroup='" + subgroup + "' AND day='" + day + "';")
 
         print()
 

@@ -23,17 +23,19 @@ def method_1(db_cursor, db_connection):
 
             db_cursor.execute("SELECT column_name FROM information_schema.columns WHERE table_name='" + table + "';")
 
-            print("!!!You shouldn't enter pre-existing id values!!!")
 
             insert_value = []
+            notes = []
 
             for note in db_cursor:
-                note = list(note)
-                note = "".join(note)
-                value = input("Input value for " + note + ":")
+                if note[0] == 'id':
+                    continue
+                value = input("Input value for " + note[0] + ":")
                 insert_value.append(value)
+                notes.append(note[0])
             
             insert_value = "', '".join(insert_value)
+            notes = ", ".join(notes)
 
             creating = input("Do you want to insert values '" + insert_value + "'? (y/n)")
 
@@ -41,7 +43,7 @@ def method_1(db_cursor, db_connection):
                 creating = input("Wrong input. Do you want to insert values '" + insert_value + "'? (y/n)")
 
             if creating == "y":
-                    db_cursor.execute("INSERT INTO " + table + " VALUES ('" + insert_value + "');")
+                    db_cursor.execute("INSERT INTO " + table + "(" + notes + ")" + " VALUES ('" + insert_value + "');")
                 
                     db_connection.commit()
 
